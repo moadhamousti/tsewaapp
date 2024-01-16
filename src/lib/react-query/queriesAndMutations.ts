@@ -3,6 +3,7 @@ import {
     useMutation,
     useQueryClient,
     useInfiniteQuery,
+    InfiniteData,
   } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/lib/react-query/queryKeys";
 import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
@@ -187,19 +188,23 @@ export const useGetUserPosts = (userId?: string) => {
 
 
 
-
 export const useGetPosts = () => {
-  return useInfiniteQuery({
+  return useInfiniteQuery<any, Error, InfiniteData<any, unknown>>({
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
-    queryFn: getInfinitePosts,
-    getNextPageParam: (lastPage) => {
-      if(lastPage && lastPage.documents.length === 0) return null;
+    queryFn: getInfinitePosts as any,
+    getNextPageParam: (lastPage: any) => {
+      if (!lastPage || lastPage.documents.length === 0) {
+        return null;
+      }
 
-      const lastId = lastPage?.documents[lastPage.documents.length - 1].$id;
-      return lastId;
-    }
+      const lastId = lastPage.documents[lastPage.documents.length - 1].$id;
+
+      return lastPage.pageInfo.page < lastPage.pageInfo.totalPages ? lastId : null;
+    },
+    initialPageParam: undefined,
   });
 };
+
 
 
 export const useUpdateUser = () => {
