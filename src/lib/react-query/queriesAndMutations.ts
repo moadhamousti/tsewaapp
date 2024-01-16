@@ -187,6 +187,7 @@ export const useGetUserPosts = (userId?: string) => {
 
 
 
+
 export const useGetPosts = () => {
   return useInfiniteQuery({
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
