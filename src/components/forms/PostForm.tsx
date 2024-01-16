@@ -50,6 +50,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
         postId: post.$id,
         imageId: post?.imageId,
         imageUrl: post?.imageUrl,
+        link:post?.link,
       })
 
       if(!updatedPost) {

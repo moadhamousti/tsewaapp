@@ -32,7 +32,7 @@ export type INavLink = {
     file: File[];
     location?: string;
     tags?: string;
-    link:string;
+    link: string | null;
   };
   
   export type IUpdatePost = {

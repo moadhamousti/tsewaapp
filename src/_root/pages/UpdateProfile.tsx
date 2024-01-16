@@ -17,7 +17,6 @@ import { useUserContext } from "@/context/AuthContext";
 import { ProfileValidation } from "@/lib/validation";
 import { Loader } from "lucide-react";
 import ProfileUploader from "./ProfileUploader";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useGetUserById, useUpdateUser } from "@/lib/react-query/queriesAndMutations";
 import { Input } from "@/components/ui/input";

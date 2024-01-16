@@ -5,10 +5,8 @@ import { Button } from "@/components/ui/button"; // Add the import statement for
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -24,11 +22,11 @@ import { useUserContext } from "@/context/AuthContext";
 
 const SignupForm = () => {
     const { toast } = useToast()
-    const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
+    const { checkAuthUser } = useUserContext();
     // const isPending = false;
 
     const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccount();
-    const { mutateAsync: signInAccount,  isPending: isSigninIn} = useSignInAccount();
+    const { mutateAsync: signInAccount } = useSignInAccount();
     const navigate = useNavigate();
 
   // 1. Define your form.
