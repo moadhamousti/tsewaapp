@@ -127,7 +127,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
             <FormItem>
               <FormLabel className="shad-form_label">URL Link</FormLabel>
               <FormControl>
-                <Input type="text" className="shad-input" {...field} />
+                <Input type="text" className="shad-input" {...field} value={field.value || ''} />
               </FormControl>
               <FormMessage className="shad-form_message" />
             </FormItem>
