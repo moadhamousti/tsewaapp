@@ -199,7 +199,9 @@ export const useGetPosts = () => {
 
       const lastId = lastPage.documents[lastPage.documents.length - 1].$id;
 
-      return lastPage.pageInfo.page < lastPage.pageInfo.totalPages ? lastId : null;
+      if (lastPage.pageInfo && lastPage.pageInfo.page < lastPage.pageInfo.totalPages) {
+        return lastId;
+      }
     },
     initialPageParam: undefined,
   });
