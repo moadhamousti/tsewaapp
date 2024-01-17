@@ -26,6 +26,7 @@ import {
     getUserById,
     updateUser,
     getUsers,
+    getPostedUsers,
   } from "@/lib/appwrite/api";
 
 export const useCreateUserAccount = () => {
@@ -67,6 +68,15 @@ export const useGetRecentPosts = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
     queryFn: getRecentPosts,
+  });
+};
+
+
+
+export const useGetPostedUsers = () => {
+  return useQuery({
+    queryKey: ['GET_POSTED_USERS'],
+    queryFn: getPostedUsers,
   });
 };
 
