@@ -495,6 +495,10 @@ export async function getUserById(userId: string) {
   }
 }
 
+
+
+
+
 // ============================== UPDATE USER
 export async function updateUser(user: IUpdateUser) {
   const hasFileToUpdate = user.file.length > 0;

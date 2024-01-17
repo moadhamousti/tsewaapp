@@ -1,26 +1,24 @@
 import UserCard from "@/components/shared/UserCard";
 import { useToast } from "@/components/ui/use-toast";
-import { useGetUserPosts } from "@/lib/react-query/queriesAndMutations";
+import { useGetUsers } from "@/lib/react-query/queriesAndMutations";
 import { Loader } from "lucide-react";
-
 
 const AllUsers = () => {
   const { toast } = useToast();
 
-  const { data: creators, isLoading, isError: isErrorCreators } = useGetUserPosts();
-
-  console.log("creators:", creators);
+  const { data: creators, isLoading, isError: isErrorCreators } = useGetUsers();
 
   if (isErrorCreators) {
-    toast({ title: "Something went wrong.", description: "Error loading user data" });
-    return null; // or display a user-friendly error message
+    toast({ title: "Something went wrong." });
+    
+    return;
   }
 
   return (
     <div className="common-container">
       <div className="user-container">
         <h2 className="h3-bold md:h2-bold text-left w-full">All Users</h2>
-        {isLoading || !creators ? (
+        {isLoading && !creators ? (
           <Loader />
         ) : (
           <ul className="user-grid">
@@ -35,7 +33,5 @@ const AllUsers = () => {
     </div>
   );
 };
-
-
 
 export default AllUsers;
