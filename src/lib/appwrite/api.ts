@@ -214,7 +214,8 @@ export async function searchPosts(searchTerm: string) {
     const posts = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.postCollectionId,
-      [Query.search("caption", searchTerm)]
+      [ Query.search("caption", searchTerm),
+        Query.search("tags", searchTerm)]
     );
 
     if (!posts) throw Error;
@@ -453,37 +454,7 @@ export async function getRecentPosts() {
 
 
 
-export async function getPostedUsers() {
-  try {
-    const posts = await databases.listDocuments(
-      appwriteConfig.databaseId,
-      appwriteConfig.postCollectionId,
-      [Query.orderDesc('$createdAt'), Query.limit(20)]
-    );
 
-    if (!posts) throw Error;
-
-    const uniqueUserIds = posts.documents.map((post) => post.author).filter(Boolean);
-
-    const users = await databases.listDocuments(
-      appwriteConfig.databaseId,
-      appwriteConfig.userCollectionId,
-      [
-        {
-          $id: {
-            $in: uniqueUserIds,
-          },
-        } as any,
-      ]
-    );
-
-    if (!users) throw Error;
-
-    return users;
-  } catch (error) {
-    console.log(error);
-  }
-}
 // ============================================================
 // USER
 // ============================================================

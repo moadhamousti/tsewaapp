@@ -43,6 +43,11 @@ export const sidebarLinks = [
       label: "Saved",
     },
     {
+      imgURL: "/assets/icons/people.svg",
+      route: "/all-users",
+      label: "People",
+    },
+    {
       imgURL: "/assets/icons/gallery-add.svg",
       route: "/create-post",
       label: "Create",
